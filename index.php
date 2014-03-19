@@ -5,8 +5,28 @@ require_once 'lib/class/'.$class.'.php';
 
 $cr = new Core();
 
-var_dump($cr->AddUserToDB("admin", "admin"));
-var_dump($cr->AddUserToDB("admin1", "admin1"));
+    if($cr->get_post("Submit")) {
+            
+        if($cr->LoginUser()) {
+            header("Location: app.php");
+        } else {
+            header("Location: index.php?login=NOok");
+        }
+    }
+    
+    
+    if(isset($_SESSION["name"]) && is_string($_SESSION["name"]) ) {
+    if($cr->VerifySession()) {
+        header("Location: app.php");
+    }}
+    
+    
+   
+        
+    if($cr->get_get("logout") == 1) {
+        $cr->CloseSession();
+    }
+
 ?>
 
 
@@ -67,10 +87,13 @@ var_dump($cr->AddUserToDB("admin1", "admin1"));
                                                 </div>
                                                 <div class="form-group">
                     <div class="col-lg-offset-2 col-lg-10">
-                      <input type="submit" name="Submit" value="Submit"  class="btn btn-default" />
+                        <button type="submit" name="Submit" value="Submit"  class="btn btn-default" > Login </button>
                     </div>
                   </div>
                             </form>
+                
+                
+                <a href="index.php?logout=1">Logout</a>
         </section>
 
         

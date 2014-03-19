@@ -21,6 +21,7 @@ textarea {
 html {
     font-size: 1em;
     line-height: 1.4;
+    min-width: 550px;
 }
 
 /*
@@ -220,12 +221,62 @@ textarea {
    Modify as content requires.
    ========================================================================== */
 
-@media only screen and (min-width: 35em) {
+@media only screen and (min-width: 15em) {
     
     #loginForm{
         max-width: 500px;
         margin: 50px auto 20px auto;
         padding: 20px;
+    }
+    
+    #Form{
+        max-width: 800px;
+        margin: 50px auto 20px auto;
+        padding: 40px 20px 20px 20px;
+        background-color: lightskyblue;
+        position: relative;
+    }
+    
+    .emptyForm {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+    }
+    
+    
+    #topNav {
+        border: 1px solid gray;
+        position: relative;
+    }
+    
+    #settingsMenu {
+        max-height: 50px;
+        margin: 10px 150px 10px 10px;
+        cursor: pointer;
+    }
+    #AdminMenu {
+        list-style: none;
+        margin: 0px;
+        padding: 0px;
+        width: 250px;
+        position: absolute;
+        right: 200px;
+        z-index: 300;
+    }
+    
+    #AdminMenu li {
+        border: 1px solid lightgray;
+        margin: 1px;
+        padding: 4px;
+    }
+    
+    #AdminMenu li img {
+        margin-right: 15px;
+        max-height: 20px;
+    }
+    
+    #AdminMenu li:hover {
+        background-color: lightgray;
     }
 }
 
