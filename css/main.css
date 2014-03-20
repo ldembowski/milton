@@ -223,6 +223,14 @@ textarea {
 
 @media only screen and (min-width: 15em) {
     
+    #loading {
+        position: fixed;
+        top:20%;
+        left: 40%;
+        z-index: 1000;
+        display: none;
+    }
+    
     #loginForm{
         max-width: 500px;
         margin: 50px auto 20px auto;

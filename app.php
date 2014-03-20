@@ -3,7 +3,7 @@ function __autoload($class){
 require_once 'lib/class/'.$class.'.php';
 }
 
-$cr = new Core();
+$cr = new Users();
 
    
  
@@ -41,10 +41,11 @@ $cr = new Core();
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-
+<img src="img/gif-load.gif" id="loading" alt="loading" /> 
         <nav id="topNav" class="clearfix">
             <img src="img/icons/settings.png" id="settingsMenu" class="pull-right" alt="" />
             <ul id="AdminMenu">                
+                <li><a href="app.php"><img src="img/icons/reload.png" alt="" />Main</a></li>
                 <li class="adduser"><img src="img/icons/adduser.png" alt="" />Add user</li>
                 <li><a href=""><img src="img/icons/editusers.png" alt="" />Edit users</a></li>
                 <li><a href=""><img src="img/icons/delivery.png" alt="" />Courier Services</a></li>

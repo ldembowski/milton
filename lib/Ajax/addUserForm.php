@@ -3,7 +3,7 @@ function __autoload($class){
 require_once '../../lib/class/'.$class.'.php';
 }
 
-$cr = new Core();
+$cr = new Users();
 
 if(!isset($_SESSION["name"]) || !$cr->VerifySession() ) {
      echo "FALSE";
@@ -12,31 +12,37 @@ if(!isset($_SESSION["name"]) || !$cr->VerifySession() ) {
 ?>
 
 <div id="AddUserForm">
+    
                     <button type="button" class="close emptyForm" aria-hidden="true">&times; Close</button>
+                   
+                    <div id="errors">
+                        
+                    </div>
+                    
                 <form class="form-horizontal" role="form">
                 <div class="form-group">
                   <label for="inputUserName" class="col-sm-2 control-label">User name</label>
                   <div class="col-sm-10">
-                    <input type="email" class="form-control" id="inputUserName" placeholder="User name">
+                    <input type="text" class="form-control" id="inputUserName" placeholder="User name" min="5" required >
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="inputPassword" class="col-sm-2 control-label">Password</label>
                   <div class="col-sm-10">
-                    <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                      <input type="password" class="form-control" id="inputPassword" placeholder="Password" min="5" required >
                   </div>
                 </div>
                     
                  <div class="form-group">
                   <label for="inputPasswordConfirm" class="col-sm-2 control-label">Password confirm</label>
                   <div class="col-sm-10">
-                    <input type="password" class="form-control" id="inputPasswordConfirm" placeholder="Confirm password">
+                    <input type="password" class="form-control" id="inputPasswordConfirm" placeholder="Confirm password" min="5" required >
                   </div>
                 </div>   
                 
                 <div class="form-group">
                   <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-default">Submit</button>
+                    <button type="submit" class="btn btn-default" id="addNewUserBtn">Submit</button>
                   </div>
                 </div>
               </form>

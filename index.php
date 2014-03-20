@@ -3,7 +3,7 @@ function __autoload($class){
 require_once 'lib/class/'.$class.'.php';
 }
 
-$cr = new Core();
+$cr = new Users();
 
     if($cr->get_post("Submit")) {
             

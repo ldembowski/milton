@@ -6,7 +6,19 @@ var form = $("#Form");
 
 adminmenu.hide();
 
-//Open menu
+
+//loading icon ON
+function ShowLoadingIcon() {
+       $("#loading").fadeIn(200);
+   }
+//hide loading icon   
+   function HideLoadingIcon() {
+       $("#loading").fadeOut(400);
+   }
+
+
+
+//Open top menu
     settings.click(function(e){
        if(adminmenu.is(":visible")) { 
            adminmenu.hide(800);
@@ -18,20 +30,82 @@ adminmenu.hide();
     });
     
     
-  //Close form  
+
     
-    
-    
+    //load Add New User Form 
     $(".adduser").click(function(){
-       // 00000000000000alert("laduje");
+       ShowLoadingIcon();
         form.load("lib/Ajax/addUserForm.php", function(){
+        
+        //submiting form    
+        $("#addNewUserBtn").on("click", function(e){
+            e.preventDefault();
+
+                    var name = $("#inputUserName").val();
+                    var pass1 = $("#inputPassword").val();
+                    var pass2 = $("#inputPasswordConfirm").val();
+                   
+                   $("#errors").empty();
+                   
+                   if(name.length < 5) {
+                       $("#errors").append("<p class=\"text-danger\">User name - min 5 characters</p>")
+                   }
+                   else if(pass1.length < 5) {
+                        $("#errors").append("<p class=\"text-danger\">password - min 5 characters</p>");
+                    }
+                   else if(pass1 != pass2) {
+                        $("#errors").append("<p class=\"text-danger\">passwords not maching...</p>");
+                    }
+                   else {
+                       ShowLoadingIcon();
+                       $.post("lib/Ajax/user_ctrl.php?add=1", {'name':name, 'pass1':pass1, 'pass2':pass2}, 
+                                function(data){
+                                    var check = data.killWhiteSpace();
+                                        if(data && check == "true"){
+                                          $("#errors").empty().append("<p class=\"text-success\">User added successfully</p>");  
+                                          $("#AddUserForm").find(':input').each(function() {
+                                            $(this).val('');
+                                             });
+                                          
+                                          HideLoadingIcon();  
+                                        } else {
+                                            $("#errors").empty().append(data); 
+                                            HideLoadingIcon(); 
+                                        }           
+                                });
+                   } 
+                    
+        });    
+            
+            
+            
+         //close form   
             $(".emptyForm").on("click",
                         function(){
                               form.empty();
                         }).slideDown(250);
-                adminmenu.hide(350);   
+                        
+                adminmenu.hide(350); //hide menu
+                HideLoadingIcon();
         });
                     
-    });
+    }); //end of loading add new user form
     
     
+    
+    
+                    String.prototype.killWhiteSpace = function() {
+                        return this.replace(/\s/g, '');
+                    };
+
+                    String.prototype.reduceWhiteSpace = function() {
+                        return this.replace(/\s+/g, ' ');
+                    }; 
+                    
+                    function is_int(value){ 
+                    if((parseFloat(value) == parseInt(value)) && !isNaN(value)){
+                        return true;
+                    } else { 
+                        return false;
+                    } 
+                    }
