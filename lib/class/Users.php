@@ -52,6 +52,8 @@ class Users extends Core{
    // Add User to Database id, name, pass
    public function AddUserToDB($name,$pass){
             
+            if(strlen($name)<5 || strlen($pass)<5) return false;
+       
             $query = "SELECT * FROM users WHERE name='$name'";
             if (mysql_num_rows(mysql_query($query)) == 1) return false;
             
@@ -63,13 +65,21 @@ class Users extends Core{
             }
             
             
-   // Get * user data from DB 
+   // Get * user data from DB by name
     public function GetUserFromDB($name) {
         $query = "SELECT * FROM users WHERE name='".$this->MySQLSanitizeString($name)."'";
         $result = mysql_query($query);
         if (mysql_num_rows($result) == 0) return FALSE;
         else return array(TRUE, mysql_fetch_assoc($result));
         } 
+        
+    // Get * user data from DB  by ID 
+    public function GetUserFromDBbyID($id) {
+        $query = "SELECT * FROM users WHERE idUser=".$this->MySQLSanitizeString($id)." limit 1";
+        $result = mysql_query($query);
+        if (mysql_num_rows($result) == 0) return FALSE;
+        else return array(TRUE, mysql_fetch_assoc($result));
+        }     
         
         
    // If user exists check password
@@ -85,5 +95,72 @@ class Users extends Core{
         else return FALSE;
         }
     
+    //Get users table
+        public function GetUsersTable(){
+            $query = "select idUser, name from users order by name";
+            $usersTable = array();
+            if($result = $this->GetFrom($query)){
+                    while($row = mysql_fetch_assoc($result)){
+                        $usersTable[] = $row;
+                    }
+                    return $usersTable;
+            } else return false;
+        }
+        
+     //Delete user from DB
+        public function DeleteUser($id){
+            $id = (int)$id;
+            
+            $users = (int)$this->CountUsers();
+
+            if($users === false) {
+                return "Can count users. Please try again later";
+            }
+            if($users <= 1) {
+                return "Only one user one user in DB left";
+            }
+            
+            else{
+                $query = "delete from users where idUser = ".$this->MySQLSanitizeString($id)." limit 1";
+                return $this->Delete($query); 
+            }
+        }
+    
+    //check qty of users in db    
+        public function CountUsers() {
+            $query = "select count(name) from users ";
+            if($result = $this->GetFrom($query)){
+                    $row = mysql_fetch_row($result);
+                    return $row[0];
+                    
+            } else return false;
+        }
+        
+      //update user password
+        public function UpdateUserPassword($id, $pass) {
+           
+            if(strlen($pass)<5) {
+                return false;
+            }
+            
+            $name = $this->GetUserFromDBbyID($id);
+            if(!$name[0]) {
+                return false;
+            }
+            $pass = md5($this->salt1.$pass.$this->salt2.$name[1]["name"]);
+            $query = 'update users set pass = "'.$pass.'" where idUser = '.$this->MySQLSanitizeString($id).' limit 1';
+      
+           sleep(1);
+            if( $this->Upadte($query)) {
+                return true;
+               
+            } else {
+                return false;
+                
+            }
+           
+            
+        }
+        
     
 } //class end

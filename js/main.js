@@ -12,16 +12,15 @@ function ShowLoadingIcon() {
        $("#loading").fadeIn(200);
    }
 //hide loading icon   
-   function HideLoadingIcon() {
+function HideLoadingIcon() {
        $("#loading").fadeOut(400);
+       LoadUsersTable();
    }
 
-
-
 //Open top menu
-    settings.click(function(e){
+   settings.click(function(e){
        if(adminmenu.is(":visible")) { 
-           adminmenu.hide(800);
+           adminmenu.slideUp();
        } else {
         var mouseX = e.pageX;
         var mouseY = e.pageY;
@@ -29,11 +28,103 @@ function ShowLoadingIcon() {
     }
     });
     
-    
+//load users table + logic
+   $(".editusers").click(function(){
+        ShowLoadingIcon();
+        settings.click();  
+        form.load("lib/Ajax/usersTable.php",
+                function(){
+                    
+                    //show confirm buttn
+                    $(".actionIcon").on("click",function(){
+                        $(this).parent().children(".confirmDelete").css("visibility", "visible");
+                    });
+                    //delete user form DB
+                    $(".confirmDelete").on("click", function() {
+                        var id = $(this).val();
+                        var listItem = $(this).parent().parent();
+                        ShowLoadingIcon();
+                       $.post("lib/Ajax/user_ctrl.php?del=8", {'idUser':id}, 
+                                function(data){
+                                    var check = data.killWhiteSpace();
+                                        if(data && check == "true"){
+                                                listItem.slideUp(350, function(){
+                                                   $(".errorsMsg").empty().append("<p class=\"text-success\">User deleted</p>");
+                                                    HideLoadingIcon(); 
+                                                });
+                                        } else {
+                                            $(".errorsMsg").empty().append(data); 
+                                            HideLoadingIcon(); 
+                                        }           
+                                });
+                      
+                    });
+                    
+                    //change user password
+                      $(".changePassIcon").on("click", function(){                     
+                          $("#ChangePasswordForm").remove();                                
+                          var id = $(this).attr("alt");
+                          var parent = $(this).parent();
+                          $.post("lib/Ajax/user_change_password_form.php",{'idUser':id},
+                          function(data){
+                              if(data){
+                                  parent.prepend(data);            
+                                 //submit data  for change password
+                                  $("#changePass").on("click", function(e){
+                                      e.preventDefault();
+                              
+                                      var pass1 = $("#inputPassword").val();
+                                      var pass2 = $("#inputPasswordConfirm").val();                                     
+                                      
+                                      $(".changePassErrorsMsg").empty();
+                                      if(pass1.length < 5) {
+                                            $(".changePassErrorsMsg").append("<p class=\"text-danger\">password - min 5 characters</p>");
+                                        }
+                                       else if(pass1 != pass2) {
+                                            $(".changePassErrorsMsg").append("<p class=\"text-danger\">passwords are not maching...</p>");
+                                        }
+                                       else {
+                                           
+                                                if(ChangeUserPassword(id, pass1, pass2)) {       
+                                                   
+                                                                            $(function(){
+                                                                                $(".errorsMsg").empty().append("<p class=\"text-success\">Password changed...</p>");
+                                                                            $("#ChangePasswordForm").slideUp(500, function(){
+                                                                            $("#ChangePasswordForm").remove();
+                                                                            }); // destroy form window
+                                                                            });
+                                                } else {
+                       
+                                                    $(".errorsMsg").empty().append("<p class=\"text-success\">bla bla bla..</p>");
+                                                }
+                                        
+                                 
+                                       }
+                                  })
+                                  
+                                  //cloase window
+                                  $(".emptyForm1").on("click", function(){
+                                      $("#ChangePasswordForm").slideUp(500, function(){
+                                          $("#ChangePasswordForm").remove();
+                                      }); 
+                                  });
+                              }
+                          });
+                          
+                      });
+                    
+                    //cloase form btn
+                    $(".emptyForm").on("click",
+                        function(){
+                          CloseForm();
+                        });
+                    HideLoadingIcon(); 
+                });
+    });
 
     
-    //load Add New User Form 
-    $(".adduser").click(function(){
+//load Add New User Form 
+   $(".adduser").click(function(){
        ShowLoadingIcon();
         form.load("lib/Ajax/addUserForm.php", function(){
         
@@ -48,7 +139,7 @@ function ShowLoadingIcon() {
                    $("#errors").empty();
                    
                    if(name.length < 5) {
-                       $("#errors").append("<p class=\"text-danger\">User name - min 5 characters</p>")
+                       $("#errors").append("<p class=\"text-danger\">User name - min 5 characters</p>");
                    }
                    else if(pass1.length < 5) {
                         $("#errors").append("<p class=\"text-danger\">password - min 5 characters</p>");
@@ -91,6 +182,31 @@ function ShowLoadingIcon() {
                     
     }); //end of loading add new user form
     
+//empty form content 
+   function CloseForm(){
+        form.slideDown(250).empty();
+    }
+    
+
+    function ChangeUserPassword(id, pass1, pass2){
+        
+          $.post("lib/Ajax/user_ctrl.php?changep=2", {'idUser':id, 'pass1': pass1, 'pass2': pass2 },   //sed post array
+                                                        function(res){
+                                                            var check = res.killWhiteSpace();
+                                                                if(check == "true"){ 
+                                                                    return true;
+                                                                } else {
+                                                                    alert("Saving new password error");
+                                                                }           
+                                                        });
+      
+      return true;
+    }
+
+
+  /***********************************HELPERS****************************************************/  
+    
+ 
     
     
     

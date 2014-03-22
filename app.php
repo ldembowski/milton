@@ -43,11 +43,13 @@ $cr = new Users();
         <![endif]-->
 <img src="img/gif-load.gif" id="loading" alt="loading" /> 
         <nav id="topNav" class="clearfix">
+            <p class="pull-left">User: <?php  echo $_SESSION["name"]; ?></p>
+            
             <img src="img/icons/settings.png" id="settingsMenu" class="pull-right" alt="" />
             <ul id="AdminMenu">                
                 <li><a href="app.php"><img src="img/icons/reload.png" alt="" />Main</a></li>
                 <li class="adduser"><img src="img/icons/adduser.png" alt="" />Add user</li>
-                <li><a href=""><img src="img/icons/editusers.png" alt="" />Edit users</a></li>
+                <li class="editusers"><img src="img/icons/editusers.png" alt="" />Edit users</li>
                 <li><a href=""><img src="img/icons/delivery.png" alt="" />Courier Services</a></li>
                 <li><a href="index.php?logout=1"><img src="img/icons/logout.png" alt="" /> Logout</a></li>
             </ul>
@@ -55,11 +57,8 @@ $cr = new Users();
         
         
         <section id="Form" >
-                                 
-            
-            
-            
-            <h1> Zalogowano </h1>
+
+            <h1> Hello <?php  echo $_SESSION["name"]; ?> </h1>
                 <a href="index.php?logout=1">Logout</a>
         </section>
 

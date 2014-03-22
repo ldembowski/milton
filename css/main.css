@@ -215,6 +215,15 @@ textarea {
     *zoom: 1;
 }
 
+.tableIcon, .actionIcon, .changePassIcon {
+    max-height: 35px;
+    max-width: 35px;
+}
+
+.actionIcon, .changePassIcon{
+    cursor: pointer;
+}
+
 /* ==========================================================================
    EXAMPLE Media Queries for Responsive Design.
    These examples override the primary ('mobile first') styles.
@@ -240,15 +249,14 @@ textarea {
     #Form{
         max-width: 800px;
         margin: 50px auto 20px auto;
-        padding: 40px 20px 20px 20px;
-        background-color: lightskyblue;
-        position: relative;
+        border: 4px dotted lightgray;
+        padding: 15px;
     }
     
     .emptyForm {
         position: absolute;
         right: 10px;
-        top: 10px;
+        top: 2px;
     }
     
     
@@ -270,15 +278,17 @@ textarea {
         position: absolute;
         right: 200px;
         z-index: 300;
+        background-color: #ffffff;
     }
     
     #AdminMenu li {
         border: 1px solid lightgray;
         margin: 1px;
         padding: 4px;
+        cursor: pointer;
     }
     
-    #AdminMenu li img {
+    #AdminMenu li img, .icon {
         margin-right: 15px;
         max-height: 20px;
     }
@@ -286,6 +296,41 @@ textarea {
     #AdminMenu li:hover {
         background-color: lightgray;
     }
+    
+    
+    
+    .confirmDelete {
+            visibility: hidden;
+    }
+    
+    #useresContent {
+        position: relative;
+        padding-top: 45px;
+    }
+    
+    #AddUserForm{
+        padding-top: 45px;
+        position: relative; 
+    }
+    
+    #ChangePasswordForm {
+        position: absolute;
+        border: 3px solid #ccc;
+        background-color: #ffffff;
+        max-width: 550px;
+        max-height: 200px;
+        padding: 20px;
+    }
+    
+    #ChangePasswordForm form {
+        margin: 10px;
+    }
+    .emptyForm1 {
+        position: absolute;
+        top:5px;
+        right: 5px;
+    }
+ 
 }
 
 @media print,
