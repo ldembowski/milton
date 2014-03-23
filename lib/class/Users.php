@@ -149,8 +149,7 @@ class Users extends Core{
             }
             $pass = md5($this->salt1.$pass.$this->salt2.$name[1]["name"]);
             $query = 'update users set pass = "'.$pass.'" where idUser = '.$this->MySQLSanitizeString($id).' limit 1';
-      
-           sleep(1);
+
             if( $this->Upadte($query)) {
                 return true;
                

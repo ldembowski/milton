@@ -14,9 +14,8 @@ function ShowLoadingIcon() {
 //hide loading icon   
 function HideLoadingIcon() {
        $("#loading").fadeOut(400);
-       LoadUsersTable();
    }
-
+/****************************************************************************************************************/
 //Open top menu
    settings.click(function(e){
        if(adminmenu.is(":visible")) { 
@@ -27,7 +26,7 @@ function HideLoadingIcon() {
         adminmenu.slideDown().css("top", mouseY+10).css("left", mouseX-250);
     }
     });
-    
+    /****************************************************************************************************************/
 //load users table + logic
    $(".editusers").click(function(){
         ShowLoadingIcon();
@@ -121,7 +120,7 @@ function HideLoadingIcon() {
                     HideLoadingIcon(); 
                 });
     });
-
+/****************************************************************************************************************/
     
 //load Add New User Form 
    $(".adduser").click(function(){
@@ -167,9 +166,7 @@ function HideLoadingIcon() {
                    } 
                     
         });    
-            
-            
-            
+                
          //close form   
             $(".emptyForm").on("click",
                         function(){
@@ -181,6 +178,67 @@ function HideLoadingIcon() {
         });
                     
     }); //end of loading add new user form
+    /****************************************************************************************************************/
+    
+    //load couriers view
+        $(".courier").click(function(){           
+                ShowLoadingIcon();
+                LoadCourierView();           
+         }); //click end
+         
+         //load view
+         function LoadCourierView() {
+             form.load("lib/Ajax/couriersView.php", function(){
+                       
+                        //adding new position
+                        $("#CourierForm").on("submit", function(e){
+                            e.preventDefault();
+                            var Couriername = $("#inputCourierName").val();
+                            var Courierinfo = $("#inputExtraInfo").val();
+                            var idCourier = $("#idCourier").val();
+                            ShowLoadingIcon();
+                            $.post("lib/Ajax/courier_ctrl.php?add=1", {'idCourier':idCourier, 'Couriername':Couriername, 'Courierinfo':Courierinfo}, 
+                                function(data){
+                                   ShowBackResult(data); 
+                                }
+                            );
+                            
+                            
+                        });
+                       
+                       //close form   
+                        $(".emptyForm").on("click",
+                        function(){
+                              form.empty();
+                        }).slideDown(250);
+                        
+                        adminmenu.hide(350); //hide menu
+                        HideLoadingIcon();
+                    });
+         }
+         
+         function ShowBackResult(act) {
+             var check = act.killWhiteSpace();
+                if(check == "true"){
+                           $("#inputCourierName").val('');
+                           $("#inputExtraInfo").val('');
+                           $("#idCourier").val('');
+                   $(".Couriererrors").empty().append("<p class=\"text-success\">Courier saved...</p>");   
+                   $("#CouriersList").load("lib/Ajax/couriersView.php #CouriersList");
+                } else {
+                    $(".Couriererrors").empty().append(act);  
+                }
+                    
+             HideLoadingIcon();
+         }
+         
+    /*******************************Courier form***********************************************************************/
+    
+    
+            
+    
+    
+    
     
 //empty form content 
    function CloseForm(){

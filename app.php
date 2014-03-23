@@ -50,7 +50,7 @@ $cr = new Users();
                 <li><a href="app.php"><img src="img/icons/reload.png" alt="" />Main</a></li>
                 <li class="adduser"><img src="img/icons/adduser.png" alt="" />Add user</li>
                 <li class="editusers"><img src="img/icons/editusers.png" alt="" />Edit users</li>
-                <li><a href=""><img src="img/icons/delivery.png" alt="" />Courier Services</a></li>
+                <li class="courier"><img src="img/icons/delivery.png" alt="" />Courier Services</li>
                 <li><a href="index.php?logout=1"><img src="img/icons/logout.png" alt="" /> Logout</a></li>
             </ul>
         </nav>

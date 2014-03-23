@@ -14,6 +14,7 @@ if(!isset($_SESSION["name"]) || !$cr->VerifySession() ) {
             
             if(!$cr->get_post("name")) {
                 array_push($errors, "user name not exists");
+                exit();
             }
             
             if(strlen($cr->get_post("name")) <5) {
