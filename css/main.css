@@ -385,7 +385,10 @@ textarea {
     
     
     
-    
+    footer {
+
+        min-height: 105px;
+    }
     
 }
 

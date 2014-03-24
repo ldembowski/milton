@@ -1,4 +1,38 @@
+/********************************************MAIN FORMS***********************************************************/
+var goodsInContent = $("#goodsIn");
+var goodsInForm = $("#goodsInForm");
+var goodsInExtraFields = $("#extraInfo");
 
+$(function(){
+    goodsInExtraFields.hide(); 
+    
+});
+
+$('#inputOption1').on('change', function (e) {
+    var optionSelected = $("option:selected", this);
+    var valueSelected = parseInt(this.value);
+        if(valueSelected === 1) {
+           goodsInExtraFields.hide(250); 
+           $("#inputFieldExtra1").removeAttr("required");
+           $("#inputFieldExtra2").removeAttr("required");
+        } else if(valueSelected === 2) {
+           goodsInExtraFields.show(250);
+           $("#inputFieldExtra1").attr("required", "true");
+           $("#inputFieldExtra2").attr("required", "t4rue");
+        }
+});
+
+
+ goodsInForm.submit(function(e){
+     e.preventDefault();  
+     alert("sle");
+    });
+
+
+/********************************************[end] MAIN FORMS [end]***********************************************************/
+
+
+/********************************************ADMIN SECTION***********************************************************/
 var settings = $("#settingsMenu");
 var adminmenu = $("#AdminMenu"); 
 var form = $("#Form");

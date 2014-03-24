@@ -10,6 +10,8 @@ $cr = new Users();
     if(!isset($_SESSION["name"]) || !$cr->VerifySession() ) {
      header("Location:index.php?system=fail_login");
     }
+    
+$courier = new Courier();    
  
 ?>
 
@@ -63,13 +65,47 @@ $cr = new Users();
         <section id="goodsIn">
             <h5>Goods in:</h5>
                                 
-            <form class="form-horizontal" role="form">
+            <form class="form-horizontal" role="form" id="goodsInForm">
+                            
+                            <div class="form-group">
+                              <label for="inputOption1" class="col-sm-2 control-label">Item</label>
+                              <div class="col-sm-10">
+
+                                <select class="form-control" id="inputOption1" name="select1">
+                                    <option value="1" >Company one</option>
+                                    <option value="2" >Company two</option>
+                                </select>
+                                
+                              </div>
+                            </div>
+                            
+                
                             <div class="form-group">
                               <label for="inputField1" class="col-sm-2 control-label">Field 1</label>
                               <div class="col-sm-10">
                                   <input type="text" class="form-control" id="inputField1" placeholder="Field 1" required >
                               </div>
+                            </div>                                    
+                                
+                            <div class="form-group">
+                              <label for="inputOption2" class="col-sm-2 control-label">Courier</label>
+                              <div class="col-sm-10">
+                            
+                                
+                                <select class="form-control" id="inputOption2" name="select1">
+                                    <?php
+                                            if(isset($courier->couriers) && count($courier->couriers)>0){
+                                                foreach($courier->couriers as $c){
+                                                    echo'<option value="'.$c["idCourier"].'" >'.$c["Couriername"].'</option>';
+                                                }
+                                            }
+                                    ?>
+                                </select>
+                                
+                              </div>
                             </div>
+                        
+                
                 
                             <div class="form-group">
                               <label for="inputField2" class="col-sm-2 control-label">Field 2</label>
@@ -91,12 +127,27 @@ $cr = new Users();
                                 <input type="text" class="form-control" id="inputField4" placeholder="Field 4" required >
                               </div>
                             </div>
-                            
+                
+                    <section id="extraInfo">        
+                            <div class="form-group">
+                              <label for="inputFieldExtra1" class="col-sm-2 control-label">Exrta Field 1</label>
+                              <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputFieldExtra1" placeholder="Extra Field 1" >
+                              </div>
+                            </div>
+                
+                            <div class="form-group">
+                              <label for="inputFieldExtra2" class="col-sm-2 control-label">Exrta Field 1</label>
+                              <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputFieldExtra2" placeholder="Extra Field 2"  >
+                              </div>
+                            </div>
+                    </section>       
                             
                             
                             <div class="form-group">
                               <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-default">Save</button>
+                                <button type="submit" class="btn btn-default" name="submit"  >Save</button>
                               </div>
                             </div>
           </form>
@@ -106,7 +157,9 @@ $cr = new Users();
 
             
 
-
+<footer>
+    
+</footer>
 
         
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
