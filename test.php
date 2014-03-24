@@ -4,13 +4,12 @@ function __autoload($class){
 require_once 'lib/class/'.$class.'.php';
 }
 
-$cr = new Users();
+$cr = new Courier();
 
+var_dump($cr->couriers);
 
-//var_dump($cr->AddUserToDB("testy", "testy"));
+$cr->UpdateCourier(17, 'kupa45', 'kupa45');
 
-var_dump($cr->GetUserFromDB("admin"));
+$cr->GenerateCouriersList();
 
-var_dump($cr->UpdateUserPassword(14, "lukasz", "admin"));
-
-var_dump($cr->GetUserFromDB("lukasz"));
+var_dump($cr->couriers);

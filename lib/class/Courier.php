@@ -25,7 +25,7 @@ class Courier extends Users {
     //Take all from DB and store to public array
     public function GenerateCouriersList(){
         $query = "select * from courier order by Couriername";
-        
+        $this->couriers = array();
         if($result = $this->GetFrom($query)){
             while($row = mysql_fetch_assoc($result)) {
                 $this->couriers[] = $row;
@@ -33,6 +33,26 @@ class Courier extends Users {
             return true;
         } else return false;
     }
+    
+    //Update sigle company information  Courierinfo
+    public function UpdateCourier($id, $name, $text){
+        
+        $id = (int)$id;
+        
+        $query = 'update courier set Couriername="'.$this->MySQLSanitizeString($name).'", Courierinfo="'.mysql_real_escape_string($text).'" '
+                .'where idCourier = '.$this->MySQLSanitizeString($id).' limit 1';
+              
+        return $this->Upadte($query);
+          
+    }
+    
+    //delete Courier from DB
+    public function DeleteCourier($id){
+        $id = (int)$id;
+        $query = 'delete from courier where idCourier = '.$this->MySQLSanitizeString($id).' limit 1';
+        return $this->Delete($query);
+    }
+    
     
     
 }

@@ -193,11 +193,13 @@ function HideLoadingIcon() {
                         //adding new position
                         $("#CourierForm").on("submit", function(e){
                             e.preventDefault();
+                            //actionMake
+                            var action = $("#actionMake").val();
                             var Couriername = $("#inputCourierName").val();
                             var Courierinfo = $("#inputExtraInfo").val();
                             var idCourier = $("#idCourier").val();
                             ShowLoadingIcon();
-                            $.post("lib/Ajax/courier_ctrl.php?add=1", {'idCourier':idCourier, 'Couriername':Couriername, 'Courierinfo':Courierinfo}, 
+                            $.post("lib/Ajax/courier_ctrl.php?add=1", {'action':action, 'idCourier': idCourier, 'Couriername':Couriername, 'Courierinfo':Courierinfo}, 
                                 function(data){
                                    ShowBackResult(data); 
                                 }
@@ -211,7 +213,32 @@ function HideLoadingIcon() {
                         function(){
                               form.empty();
                         }).slideDown(250);
-                        
+                       
+            /******************manage table*****************************************/     
+                 //update table item
+                 $(".editCourier").on("click", function(){
+                     //courier id form picture
+                     var id = $(this).children("img").attr("alt");
+                     //courier name directly form table
+                     var cn =  $(this).parent().parent().parent().children(".cn").text();  
+                     //courier name form table
+                     var ci =  $(this).parent().parent().parent().children(".ci").text();  
+                     $("#actionMake").val('update');
+                     $("#idCourier").val(id);
+                     $("#inputCourierName").val(cn);
+                     $("#inputExtraInfo").val(ci);
+                 });
+                 
+                 //delete table item
+                 $(".deleteCourier").on("click", function(){
+                        var id = $(this).children("img").attr("alt");
+                        $.post("lib/Ajax/courier_ctrl.php?del=1", {'idCourier': id}, 
+                                function(data){
+                                   ShowBackResult(data); 
+                                }
+                            );
+                 });
+                 
                         adminmenu.hide(350); //hide menu
                         HideLoadingIcon();
                     });
@@ -223,8 +250,35 @@ function HideLoadingIcon() {
                            $("#inputCourierName").val('');
                            $("#inputExtraInfo").val('');
                            $("#idCourier").val('');
-                   $(".Couriererrors").empty().append("<p class=\"text-success\">Courier saved...</p>");   
-                   $("#CouriersList").load("lib/Ajax/couriersView.php #CouriersList");
+                           $("#actionMake").val('add');
+                   $(".Couriererrors").empty().append("<p class=\"text-success\">Couriers list saved...</p>");   
+                   $("#CouriersList").load("lib/Ajax/couriersView.php #CouriersList", function(){
+                                                                /******************manage table*****************************************/     
+                                                               //edit table item
+                                                              $(".editCourier").on("click", function(){
+                                                              //courier id form picture
+                                                              var id = $(this).children("img").attr("alt");
+                                                              //courier name directly form table
+                                                              var cn =  $(this).parent().parent().parent().children(".cn").text();  
+                                                              //courier name form table
+                                                              var ci =  $(this).parent().parent().parent().children(".ci").text();  
+                                                              $("#actionMake").val('update');
+                                                              $("#idCourier").val(id);
+                                                              $("#inputCourierName").val(cn);
+                                                              $("#inputExtraInfo").val(ci);
+
+                                                          });
+                                                          
+                                                          //delete table item
+                                                            $(".deleteCourier").on("click", function(){
+                                                                   var id = $(this).children("img").attr("alt");
+                                                                   $.post("lib/Ajax/courier_ctrl.php?del=1", {'idCourier': id}, 
+                                                                           function(data){
+                                                                              ShowBackResult(data); 
+                                                                           }
+                                                                       );
+                                                            });
+                   });
                 } else {
                     $(".Couriererrors").empty().append(act);  
                 }

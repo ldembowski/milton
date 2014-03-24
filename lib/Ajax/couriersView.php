@@ -20,7 +20,8 @@ if(!isset($_SESSION["name"]) || !$cr->VerifySession() ) {
                     </div>
 
                 <form class="form-horizontal" role="form">
-                                                        <input type="hidden" name="idCourier" value="" id="inputidCourier" />
+                                                        <input type="hidden" name="idCourier" value="" id="idCourier" />
+                                                        <input type="hidden" name="actionMake" value="add" id="actionMake" />
                 <div class="form-group">
                   <label for="inputCourierName" class="col-sm-2 control-label">Courier</label>
                   <div class="col-sm-10">
@@ -38,7 +39,7 @@ if(!isset($_SESSION["name"]) || !$cr->VerifySession() ) {
                     
                 <div class="form-group">
                   <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-default" id="addNewCourier">Submit</button>
+                    <button type="submit" class="btn btn-default" id="addNewCourier" name="submit" value="submit" >Submit</button>
                   </div>
                 </div>
               </form>
@@ -64,8 +65,8 @@ if(!isset($_SESSION["name"]) || !$cr->VerifySession() ) {
             foreach($cr->couriers as $c){
                 echo'<tr>'
                     .'<td>'.$i.''      //$c["idCourier"]
-                    .'<td>'.$c["Couriername"].''
-                    .'<td>'.$c["Courierinfo"].''
+                    .'<td class="cn">'.$c["Couriername"].''
+                    .'<td class="ci">'.$c["Courierinfo"].''
                     .'<td class="courierTableMenu"><img src="img/icons/option.png" alt=""  />'
                         .'<div>'
                         .'<span class="editCourier"><img src="img/icons/edit.png" alt="'.$c["idCourier"].'" />edit</span>'
