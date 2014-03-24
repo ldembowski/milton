@@ -13,10 +13,6 @@ $cr = new Users();
  
 ?>
 
-
-
-
-
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -38,7 +34,7 @@ $cr = new Users();
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
     </head>
     <body>
-        <!--[if lt IE 7]>
+        <!--[if lt IE 9]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 <img src="img/gif-load.gif" id="loading" alt="loading" /> 
@@ -58,11 +54,60 @@ $cr = new Users();
         
         <section id="Form" >
 
-            <h1> Hello <?php  echo $_SESSION["name"]; ?> </h1>
+            <h3> Hello <?php  echo $_SESSION["name"]; ?> </h3>
                 <a href="index.php?logout=1">Logout</a>
         </section>
 
         
+
+        <section id="goodsIn">
+            <h5>Goods in:</h5>
+                                
+            <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                              <label for="inputField1" class="col-sm-2 control-label">Field 1</label>
+                              <div class="col-sm-10">
+                                  <input type="text" class="form-control" id="inputField1" placeholder="Field 1" required >
+                              </div>
+                            </div>
+                
+                            <div class="form-group">
+                              <label for="inputField2" class="col-sm-2 control-label">Field 2</label>
+                              <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputField2" placeholder="Field 2" required >
+                              </div>
+                            </div>
+                            
+                            <div class="form-group">
+                              <label for="inputField3" class="col-sm-2 control-label">Field 3</label>
+                              <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputField3" placeholder="Field 3" required >
+                              </div>
+                            </div>
+                            
+                            <div class="form-group">
+                              <label for="inputField4" class="col-sm-2 control-label">Field 4</label>
+                              <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputField4" placeholder="Field 4" required >
+                              </div>
+                            </div>
+                            
+                            
+                            
+                            <div class="form-group">
+                              <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-default">Save</button>
+                              </div>
+                            </div>
+          </form>
+            
+            
+        </section>
+
+            
+
+
+
         
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
