@@ -12,7 +12,8 @@ $cr = new Users();
     }
     
 $courier = new Courier();    
- 
+$in = new GoodsIn();
+
 ?>
 
 <!DOCTYPE html>
@@ -55,14 +56,16 @@ $courier = new Courier();
         
         
         <section id="Form" >
-
+                <!--
             <h3> Hello <?php  echo $_SESSION["name"]; ?> </h3>
-                <a href="index.php?logout=1">Logout</a>
+                <a href="index.php?logout=1">Logout</a>  -->
         </section>
 
         
 
         <section id="goodsIn">
+            
+            
             <h5>Goods in:</h5>
                                 
             <form class="form-horizontal" role="form" id="goodsInForm">
@@ -151,9 +154,72 @@ $courier = new Courier();
                               </div>
                             </div>
           </form>
+                
+            <div id="todayIn">
+                
+                <h5>Added today:</h5>
+                
+                <?php
+                    $in->AddedToday();
+                    
+                    if(isset($in->todayIn) && count($in->todayIn)>0) {
+                ?>
+                
+                        <table class="table table-condensed">
+                                <thead>
+                                <tr class="active">
+                                    <td>#</td>
+                                    <td>Company</td>
+                                    <td>Field1</td>
+                                    <td>Courier</td>
+                                    <td>Field2</td>
+                                    <td>Field3</td>
+                                    <td>Field4</td>
+                                    <td>Extra1</td>
+                                    <td>Extra2</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $i = 0;
+                                            foreach($in->todayIn as $t) {
+                                               $i++;
+                                               
+                                               if($t["Company"] == 1) {
+                                                   $comp = "Company one";
+                                               } else  if($t["Company"] == 2) {
+                                                   $comp = "Company two";
+                                               } else { $comp = "error01"; }
+                                               
+                                               if($t["ExField1"] == "NULL") { $t["ExField1"] = ""; }
+                                               if($t["ExField2"] == "NULL") { $t["ExField2"] = ""; }
+                                               
+                                                echo'<tr>
+                                                        <td>'.$i.'</td>
+                                                        <td>'.$comp.'</td>
+                                                        <td>'.$t["Field1"].'</td>
+                                                        <td>'.$courier->GetCourierNameById($t["idCourier"]).'</td>
+                                                        <td>'.$t["Field2"].'</td>
+                                                        <td>'.$t["Field3"].'</td>
+                                                        <td>'.$t["Field4"].'</td>
+                                                        <td>'.$t["ExField1"].'</td>
+                                                        <td>'.$t["ExField2"].'</td>
+                                                    </tr>';
+                                                
+                                            }
+                                    ?>
+                                    
+                                </tbody>
+                                
+                        </table>
+                
+                
+             <?php   
+                }
+                ?>
+            </div> <!-- today in [end] -->
             
-            
-        </section>
+        </section>  <!-- goodsin [end]-->
 
             
 

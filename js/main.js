@@ -25,21 +25,59 @@ $('#inputOption1').on('change', function (e) {
 
  goodsInForm.submit(function(e){
      e.preventDefault(); 
+     ShowLoadingIcon();
+     var idGood = '';
+     var Company = $("#inputOption1").val();
+     var idCourier = $("#inputOption2").val();
      
-     var option1 = $("#inputOption1").val();
-     var option2 = $("#inputOption2").val();
+     var Field1 = $("#inputField1").val();
+     var Field2 = $("#inputField2").val();
+     var Field3 = $("#inputField3").val();
+     var Field4 = $("#inputField4").val();
      
-     var field1 = $("#inputField1");
-     var field2 = $("#inputField2");
-     var field3 = $("#inputField3");
-     var field4 = $("#inputField4");
+     var ExField1 = $("#inputFieldExtra1").val();
+     var ExField2 = $("#inputFieldExtra2").val();
      
-     var extra1 = $("#inputFieldExtra1");
-     var extra2 = $("#inputFieldExtra2");
+     var dateIn = '';
      
+     $.post("lib/Ajax/goodsIn_ctrl.php?add=1", {'idGood':idGood,
+                                                'Company': Company,
+                                                'Field1':Field1,
+                                                'idCourier':idCourier,
+                                                'Field2':Field2,
+                                                'Field3':Field3, 
+                                                'Field4':Field4,
+                                                'ExField1':ExField1,
+                                                'ExField2':ExField2,
+                                                'dateIn': dateIn
+                                                }, 
+                                function(data){
+                                   var check = data.killWhiteSpace();
+                                   if(check == "true") {
+                                       //TODO: prepare form...
+                                       UpdateFormAndData();
+                                   } else {
+                                       goodsInContent.prepend(data);
+                                   }
+                                   HideLoadingIcon();
+                                }
+                            );
+
+    });  //submit form
+
+    function UpdateFormAndData() {
+        $("#inputOption1").val('1');
+        goodsInExtraFields.hide(); 
+        $("#inputOption2").val('1');
+        
+        $("#inputField1").val('');
+        $("#inputField2").val('');
+        $("#inputField3").val('');
+        $("#inputField4").val('');
      
-     
-    });
+        $("#inputFieldExtra1").val('');
+        $("#inputFieldExtra2").val('');
+    }
 
 
 /********************************************[end] MAIN FORMS [end]***********************************************************/

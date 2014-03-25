@@ -34,6 +34,17 @@ class Courier extends Users {
         } else return false;
     }
     
+    
+    //Get Courier name by if - user id output table
+    public function GetCourierNameById($id) {
+        $query = "select Couriername from courier where idCourier = ".$this->MySQLSanitizeString($id)." limit 1";
+        if($result = $this->GetFrom($query)) {
+                $row = mysql_fetch_row($result);
+                return $row[0];
+        } else return false;
+    }
+    
+    
     //Update sigle company information  Courierinfo
     public function UpdateCourier($id, $name, $text){
         
