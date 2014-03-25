@@ -24,8 +24,21 @@ $('#inputOption1').on('change', function (e) {
 
 
  goodsInForm.submit(function(e){
-     e.preventDefault();  
-     alert("sle");
+     e.preventDefault(); 
+     
+     var option1 = $("#inputOption1").val();
+     var option2 = $("#inputOption2").val();
+     
+     var field1 = $("#inputField1");
+     var field2 = $("#inputField2");
+     var field3 = $("#inputField3");
+     var field4 = $("#inputField4");
+     
+     var extra1 = $("#inputFieldExtra1");
+     var extra2 = $("#inputFieldExtra2");
+     
+     
+     
     });
 
 
