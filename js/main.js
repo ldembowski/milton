@@ -77,6 +77,8 @@ $('#inputOption1').on('change', function (e) {
      
         $("#inputFieldExtra1").val('');
         $("#inputFieldExtra2").val('');
+        
+        $("#todayIn").load("app.php #todayIn");
     }
 
 

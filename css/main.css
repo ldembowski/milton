@@ -247,15 +247,13 @@ textarea {
     }
     
     #CourierForm{
-        padding-top: 35px;
-        position: relative;
+        
     }
     
     #Form{
         max-width: 800px;
-        margin: 50px auto 20px auto;
-        border: 4px dotted lightgray;
-        padding: 15px;
+        margin: 20px auto 20px auto;
+        padding: 5px;
     }
     
     .emptyForm {
@@ -266,8 +264,26 @@ textarea {
     
     
     #topNav {
-        border: 1px solid gray;
+        border-bottom: 1px dotted lightblue;
         position: relative;
+    }
+    
+    
+    #topNav nav {
+        width: 450px;
+        border: 0px dotted black;
+        margin: 0px auto 0px auto;
+        padding-top: 30px;
+    }
+    
+    #topNav nav a {
+  
+        margin: 2px;
+    }
+    
+    .loggedin {
+        padding: 10px 2px 5px 35px;
+        color: lightgray;
     }
     
     #settingsMenu {
@@ -309,15 +325,19 @@ textarea {
     }
     
     #useresContent {
-        position: relative;
-        padding-top: 45px;
+        
     }
     
-    #AddUserForm{
-        padding-top: 45px;
+    #AddUserForm, #useresContent, #CourierForm, #CouriersList{
+        padding: 45px 15px 15px 15px;
         position: relative; 
+        border: 2px solid #ccc;
+        background-color: #eff;
     }
     
+    #CouriersList {
+        margin-top: 2px;
+    }
     #ChangePasswordForm {
         position: absolute;
         border: 3px solid #ccc;
@@ -383,7 +403,10 @@ textarea {
         margin: 5px auto 5px auto;
     }
     
-    
+    #allIn {
+        padding: 20px;
+        min-width: 800px;
+    }
     
     footer {
 

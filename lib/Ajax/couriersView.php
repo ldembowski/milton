@@ -45,9 +45,6 @@ if(!isset($_SESSION["name"]) || !$cr->VerifySession() ) {
               </form>
 </div>
 
-<hr />
-
-
 <div id="CouriersList">
     <table class="table table-hover">
     <thead>

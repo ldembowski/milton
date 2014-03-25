@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 23, 2014 at 09:15 PM
+-- Generation Time: Mar 25, 2014 at 09:48 PM
 -- Server version: 5.6.12-log
 -- PHP Version: 5.4.12
 
@@ -33,15 +33,47 @@ CREATE TABLE IF NOT EXISTS `courier` (
   `Couriername` text NOT NULL,
   `Courierinfo` text,
   PRIMARY KEY (`idCourier`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
 
 --
 -- Dumping data for table `courier`
 --
 
 INSERT INTO `courier` (`idCourier`, `Couriername`, `Courierinfo`) VALUES
-(21, 'Sample 1', 'Sample 21'),
-(22, 'Sample 2', 'Sample text&#10;&#10;22 The Street&#10;AA3 BB4');
+(21, 'Sample 1 new', 'Sample 21'),
+(22, 'Sample 2', 'Sample text&#10;&#10;22 The Street&#10;AA3 BB4'),
+(23, 'Sample 3', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `goodsin`
+--
+
+CREATE TABLE IF NOT EXISTS `goodsin` (
+  `idGood` int(11) NOT NULL AUTO_INCREMENT,
+  `Company` int(11) NOT NULL,
+  `Field1` text,
+  `idCourier` int(11) NOT NULL,
+  `Field2` text,
+  `Field3` text,
+  `Field4` text,
+  `ExField1` text,
+  `ExField2` text,
+  `dateIn` date NOT NULL,
+  PRIMARY KEY (`idGood`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `goodsin`
+--
+
+INSERT INTO `goodsin` (`idGood`, `Company`, `Field1`, `idCourier`, `Field2`, `Field3`, `Field4`, `ExField1`, `ExField2`, `dateIn`) VALUES
+(1, 1, 'jeden', 21, 'dwa', 'trzy', 'cztery', 'NULL', 'NULL', '2014-03-25'),
+(2, 2, 'jeden', 21, 'dwa', 'trzy', 'cztery', 'piec', 'szesc', '2014-03-25'),
+(3, 1, 'Pierwsza proba', 21, 'Pierwsza proba', 'Pierwsza proba', 'Pierwsza proba', 'NULL', 'NULL', '2014-03-25'),
+(4, 2, 'proba nowa', 21, 'proba nowa', 'proba nowa', 'proba nowa', 'proba nowa', 'proba nowa', '2014-03-25'),
+(5, 1, 'one', 23, 'two ', 'three', 'four', 'NULL', 'NULL', '2014-03-25');
 
 -- --------------------------------------------------------
 

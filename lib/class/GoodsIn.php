@@ -18,6 +18,7 @@ class GoodsIn extends Core{
     
     public $errors = array();
     public $todayIn = array();
+    public $allIn = array();
     
     
     public function __construct() {
@@ -82,7 +83,21 @@ class GoodsIn extends Core{
                 return true;
             }   else return false;
     } 
+    
+    //Get all goods in 
+    public function GetAllGoodsIn() {
+       $query = 'select * from goodsin order by dateIn desc';
         
+        if($result = $this->GetFrom($query)){
+                while($row = mysql_fetch_assoc($result)){
+                    $this->allIn[] = $row;
+                }
+                return true;
+            }   else return false;
+    }  
+    
+    
+    
         
 
     

@@ -24,7 +24,7 @@ $in = new GoodsIn();
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Logged in</title>
+        <title>Goods in</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
        
@@ -43,13 +43,6 @@ $in = new GoodsIn();
 <img src="img/gif-load.gif" id="loading" alt="loading" /> 
         <header id="topNav" class="clearfix">
                 <p class="pull-left loggedin">User: <?php  echo $_SESSION["name"]; ?></p>
-            
-            
-            
-            
-            
-            
-            
             
             <img src="img/icons/settings.png" id="settingsMenu" class="pull-right" alt="" />
             <ul id="AdminMenu">                
@@ -71,119 +64,27 @@ $in = new GoodsIn();
         
         
         <section id="Form" >
-                <!--
-            <h3> Hello <?php  echo $_SESSION["name"]; ?> </h3>
-                <a href="index.php?logout=1">Logout</a>  -->
+          
         </section>
 
         
 
-        <section id="goodsIn">
-            
-            
-            <h5>Goods in:</h5>
-                                
-            <form class="form-horizontal" role="form" id="goodsInForm">
-                            
-                            <div class="form-group">
-                              <label for="inputOption1" class="col-sm-2 control-label">Item</label>
-                              <div class="col-sm-10">
-
-                                <select class="form-control" id="inputOption1" name="select1">
-                                    <option value="1" >Company one</option>
-                                    <option value="2" >Company two</option>
-                                </select>
-                                
-                              </div>
-                            </div>
-                            
+     
                 
-                            <div class="form-group">
-                              <label for="inputField1" class="col-sm-2 control-label">Field 1</label>
-                              <div class="col-sm-10">
-                                  <input type="text" class="form-control" id="inputField1" placeholder="Field 1" required >
-                              </div>
-                            </div>                                    
-                                
-                            <div class="form-group">
-                              <label for="inputOption2" class="col-sm-2 control-label">Courier</label>
-                              <div class="col-sm-10">
-                            
-                                
-                                <select class="form-control" id="inputOption2" name="select1">
-                                    <?php
-                                            if(isset($courier->couriers) && count($courier->couriers)>0){
-                                                foreach($courier->couriers as $c){
-                                                    echo'<option value="'.$c["idCourier"].'" >'.$c["Couriername"].'</option>';
-                                                }
-                                            }
-                                    ?>
-                                </select>
-                                
-                              </div>
-                            </div>
-                        
+            <div id="allIn">
                 
-                
-                            <div class="form-group">
-                              <label for="inputField2" class="col-sm-2 control-label">Field 2</label>
-                              <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputField2" placeholder="Field 2" required >
-                              </div>
-                            </div>
-                            
-                            <div class="form-group">
-                              <label for="inputField3" class="col-sm-2 control-label">Field 3</label>
-                              <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputField3" placeholder="Field 3" required >
-                              </div>
-                            </div>
-                            
-                            <div class="form-group">
-                              <label for="inputField4" class="col-sm-2 control-label">Field 4</label>
-                              <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputField4" placeholder="Field 4" required >
-                              </div>
-                            </div>
-                
-                    <section id="extraInfo">        
-                            <div class="form-group">
-                              <label for="inputFieldExtra1" class="col-sm-2 control-label">Exrta Field 1</label>
-                              <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputFieldExtra1" placeholder="Extra Field 1" >
-                              </div>
-                            </div>
-                
-                            <div class="form-group">
-                              <label for="inputFieldExtra2" class="col-sm-2 control-label">Exrta Field 1</label>
-                              <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputFieldExtra2" placeholder="Extra Field 2"  >
-                              </div>
-                            </div>
-                    </section>       
-                            
-                            
-                            <div class="form-group">
-                              <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-default" name="submit"  >Save</button>
-                              </div>
-                            </div>
-          </form>
-                
-            <div id="todayIn">
-                
-                <h5>Added today:</h5>
+                <h5>Goods list:</h5>
                 
                 <?php
-                    $in->AddedToday();
+                    $in->GetAllGoodsIn();
                     
-                    if(isset($in->todayIn) && count($in->todayIn)>0) {
+                    if(isset($in->allIn) && count($in->allIn)>0) {
                 ?>
                 
                         <table class="table table-condensed">
                                 <thead>
                                 <tr class="active">
-                                    <td>#</td>
+                                    <td>order no</td>
                                     <td>Company</td>
                                     <td>Field1</td>
                                     <td>Courier</td>
@@ -197,7 +98,7 @@ $in = new GoodsIn();
                                 <tbody>
                                     <?php
                                     $i = 0;
-                                            foreach($in->todayIn as $t) {
+                                            foreach($in->allIn as $t) {
                                                $i++;
                                                
                                                if($t["Company"] == 1) {
@@ -210,7 +111,7 @@ $in = new GoodsIn();
                                                if($t["ExField2"] == "NULL") { $t["ExField2"] = ""; }
                                                
                                                 echo'<tr>
-                                                        <td>'.$i.'</td>
+                                                        <td>'.$t["idGood"].'</td>
                                                         <td>'.$comp.'</td>
                                                         <td>'.$t["Field1"].'</td>
                                                         <td>'.$courier->GetCourierNameById($t["idCourier"]).'</td>
@@ -232,9 +133,9 @@ $in = new GoodsIn();
              <?php   
                 }
                 ?>
-            </div> <!-- today in [end] -->
+            </div> <!-- all in [end] -->
             
-        </section>  <!-- goodsin [end]-->
+      
 
             
 
