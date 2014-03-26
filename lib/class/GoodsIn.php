@@ -13,12 +13,15 @@ class GoodsIn extends Core{
                         "Field4"    =>'',
                         "ExField1"  =>'',
                         "ExField2"  =>'',
-                        "dateIn"    =>''
+                        "dateIn"    =>'', 
+                        "status"    =>'open'
     );  
     
-    public $errors = array();
-    public $todayIn = array();
-    public $allIn = array();
+    public $errors = array();   //form errors table
+    
+    public $todayIn = array(); //orderd added on current date 
+    public $allIn = array();   //all orders in one table 
+    public $closed = array();  // all closed orders
     
     
     public function __construct() {
@@ -97,8 +100,43 @@ class GoodsIn extends Core{
     }  
     
     
-    
+    //Get all goods need to be closed
+    public function GetOpenGoodsIn() {
+       $query = 'select * from goodsin where status = "open" order by dateIn desc';
         
+        if($result = $this->GetFrom($query)){
+                while($row = mysql_fetch_assoc($result)){
+                    $this->closed[] = $row;
+                }
+                
+                return true;
+            }   else return false;
+    } 
+    
+    
+    
+    //Find opened Order by id
+        public function GetSingleOpenGoodsIn($id) {
+            
+       $query = 'select * from goodsin where idGood = "'.$this->MySQLSanitizeString($id).'"  and status = "open" limit 1';
+        if($result = $this->GetFrom($query)){
+                if($row = mysql_fetch_assoc($result)){
+                    return $row;
+                } else return false;
+            }   else return false;
+        }
+        
+        
+   //close the order
+        public function CloseOrder($id){
+            $query = 'update goodsin set status="close" where idGood = "'.$this->MySQLSanitizeString($id).'"  and status = "open" limit 1';
+            return $this->Upadte($query);
+        }
+        
+        
+        public function AddCloseOrderToDB() {
+            
+        }
 
     
     

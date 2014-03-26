@@ -41,33 +41,9 @@ $in = new GoodsIn();
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 <img src="img/gif-load.gif" id="loading" alt="loading" /> 
-        <header id="topNav" class="clearfix">
-                <p class="pull-left loggedin">User: <?php  echo $_SESSION["name"]; ?></p>
-            
-            
-            
-            
-            
-            
-            
-            
-            <img src="img/icons/settings.png" id="settingsMenu" class="pull-right" alt="" />
-            <ul id="AdminMenu">                
-                <li><a href="app.php"><img src="img/icons/reload.png" alt="" />Main</a></li>
-                <li class="adduser"><img src="img/icons/adduser.png" alt="" />Add user</li>
-                <li class="editusers"><img src="img/icons/editusers.png" alt="" />Edit users</li>
-                <li class="courier"><img src="img/icons/delivery.png" alt="" />Courier Services</li>
-                <li><a href="index.php?logout=1"><img src="img/icons/logout.png" alt="" /> Logout</a></li>
-            </ul>
-            
-            
-            
-            <nav>
-                <a href="app.php" class="btn btn-default"> Main</a>
-                <a href="goods_in.php" class="btn btn-default"> Goods list</a>
-            </nav>
-            
-        </header>
+         <?php
+        require_once './lib/modules/header/header.php';
+        ?>
         
         
         <section id="Form" >

@@ -32,5 +32,5 @@ $.getScript( "js/vendor/bootstrap/js/bootstrap.min.js", function( data, textStat
  // console.log( data ); // Data returned
 //  console.log( textStatus ); // Success
 //  console.log( jqxhr.status ); // 200
-  console.log( "Boostrap load was performed." );
+ // console.log( "Boostrap load was performed." );
 }); 

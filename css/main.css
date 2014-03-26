@@ -357,6 +357,11 @@ textarea {
     }
  
     
+    #closeContent {
+        margin: auto;
+        padding: 10px;
+        max-width: 800px;
+    }
     
     .courierTableMenu{
         cursor: pointer;

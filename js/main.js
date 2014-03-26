@@ -39,6 +39,7 @@ $('#inputOption1').on('change', function (e) {
      var ExField2 = $("#inputFieldExtra2").val();
      
      var dateIn = '';
+     var status = 'open';
      
      $.post("lib/Ajax/goodsIn_ctrl.php?add=1", {'idGood':idGood,
                                                 'Company': Company,
@@ -49,7 +50,8 @@ $('#inputOption1').on('change', function (e) {
                                                 'Field4':Field4,
                                                 'ExField1':ExField1,
                                                 'ExField2':ExField2,
-                                                'dateIn': dateIn
+                                                'dateIn': dateIn, 
+                                                'status': status
                                                 }, 
                                 function(data){
                                    var check = data.killWhiteSpace();

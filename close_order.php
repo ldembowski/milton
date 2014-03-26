@@ -41,27 +41,49 @@ $in = new GoodsIn();
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 <img src="img/gif-load.gif" id="loading" alt="loading" /> 
-         <?php
+        
+        <?php
         require_once './lib/modules/header/header.php';
         ?>
-        
         
         <section id="Form" >
           
         </section>
 
-        
+                <div  id="closeContent">
+                        <h5>Close order:</h5>
+                
+                            <form class="form-horizontal" role="form" id="CloseOrder">
+
+                                        <div class="form-group">
+                                          <label for="idGood" class="col-sm-2 control-label">order no:</label>
+                                          <div class="col-sm-10">
+                                              <input type="text" class="form-control" id="idGood" placeholder="Field 1" required >
+                                          </div>
+                                        </div>  
+                                        
+                                
+                                        <div class="form-group">
+                                        <div class="col-sm-offset-2 col-sm-10">
+                                          <button type="submit" class="btn btn-default" name="submit"  >Find</button>
+                                        </div>
+                                      </div>
+                                
+                            </form>
+                        
+                        <div id="Searchresult"></div>     
+                        
+                </div>
 
      
                 
             <div id="allIn">
-                
-                <h5>Goods list:</h5>
+
                 
                 <?php
-                    $in->GetAllGoodsIn();
+                    $in->GetOpenGoodsIn();
                     
-                    if(isset($in->allIn) && count($in->allIn)>0) {
+                    if(isset($in->closed) && count($in->closed)>0) {
                 ?>
                 
                         <table class="table table-condensed">
@@ -76,15 +98,13 @@ $in = new GoodsIn();
                                     <td>Field4</td>
                                     <td>Extra1</td>
                                     <td>Extra2</td>
-                                    <td>Added</td>
                                     <td>Status</td>
-                                    
                                 </tr>
                                 </thead>
                                 <tbody>
                                     <?php
                                     $i = 0;
-                                            foreach($in->allIn as $t) {
+                                            foreach($in->closed as $t) {
                                                $i++;
                                                
                                                if($t["Company"] == 1) {
@@ -109,7 +129,6 @@ $in = new GoodsIn();
                                                         <td>'.$t["Field4"].'</td>
                                                         <td>'.$t["ExField1"].'</td>
                                                         <td>'.$t["ExField2"].'</td>
-                                                        <td>'.$t["dateIn"].'</td>
                                                         <td>'.$t["status"].'</td>
                                                     </tr>';
                                                 
@@ -139,6 +158,7 @@ $in = new GoodsIn();
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
+        <script src="js/closeOrder.js"></script>
 
     </body>
 </html>
