@@ -15,8 +15,11 @@ if(!isset($_SESSION["name"]) || !$cr->VerifySession() ) {
     
     
 ?>
-<div class="clearfix" id="useresContent" > 
+<div class="clearfix Bigborder" id="useresContent" > 
     <button type="button" class="close emptyForm" aria-hidden="true">&times; Close</button>
+    
+    <p class="text-muted">Manage users:</p>
+    
     <div class="errorsMsg">
                         
     </div>

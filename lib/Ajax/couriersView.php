@@ -11,8 +11,8 @@ if(!isset($_SESSION["name"]) || !$cr->VerifySession() ) {
     
 ?>
 
-<div id="CourierForm" class="clearfix">
-    
+<div id="CourierForm" class="clearfix Bigborder">
+    <p class="text-muted">Add new:</p>
                     <button type="button" class="close emptyForm" aria-hidden="true">&times; Close</button>
                    
                     <div class="Couriererrors">
@@ -45,7 +45,9 @@ if(!isset($_SESSION["name"]) || !$cr->VerifySession() ) {
               </form>
 </div>
 
-<div id="CouriersList">
+<div id="CouriersList" class="Bigborder">
+    <p class="text-muted">Manage:</p>
+    
     <table class="table table-hover">
     <thead>
         <tr class="text-center">

@@ -59,9 +59,9 @@ $cr = new Users();
         <![endif]-->
 
         <!-- Add your site or application content here -->
-        <section id="loginForm" class="bg-info">
+        <section id="loginForm" class="bg-info Bigborder">
 
-                <p class="lead text-center text-muted">Login site:</p>
+                <h1 class="lead text-center text-muted">D e m o</h1>
             
                 <form class="form-horizontal"  id="contactForm" method="post">
                                                 <div class="form-group">
@@ -76,6 +76,8 @@ $cr = new Users();
                                                     <input type="password" class="form-control" name="userPassword" id="inputPassword" placeholder="Password">
                                                   </div>
                                                 </div>
+                    
+                                            <!--
                                                 <div class="form-group">
                                                   <div class="col-sm-offset-2 col-sm-10">
                                                     <div class="checkbox">
@@ -85,6 +87,8 @@ $cr = new Users();
                                                     </div>
                                                   </div>
                                                 </div>
+                                            -->
+                    
                                                 <div class="form-group">
                     <div class="col-lg-offset-2 col-lg-10">
                         <button type="submit" name="Submit" value="Submit"  class="btn btn-default" > Login </button>
@@ -92,8 +96,6 @@ $cr = new Users();
                   </div>
                             </form>
                 
-                
-                <a href="index.php?logout=1">Logout</a>
         </section>
 
         
@@ -101,7 +103,6 @@ $cr = new Users();
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
 
     </body>
 </html>

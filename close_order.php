@@ -116,10 +116,10 @@ $in = new GoodsIn();
                                                if($t["ExField1"] == "NULL") { $t["ExField1"] = ""; }
                                                if($t["ExField2"] == "NULL") { $t["ExField2"] = ""; }
                                                
-                                               if($t["status"] == "open") { $alert = 'class="danger"'; } 
-                                               else { $alert = ''; }
+                                          /*     if($t["status"] == "open") { $alert = 'class="danger"'; } 
+                                               else { $alert = ''; } */
                                                
-                                                echo'<tr '.$alert.'>
+                                                echo'<tr>
                                                         <td>'.$t["idGood"].'</td>
                                                         <td>'.$comp.'</td>
                                                         <td>'.$t["Field1"].'</td>
@@ -152,12 +152,9 @@ $in = new GoodsIn();
 <footer>
     
 </footer>
-
-        
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
-        <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
+<?php
+        require_once './lib/modules/js_section/js_section.php';
+?>
         <script src="js/closeOrder.js"></script>
 
     </body>

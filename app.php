@@ -36,7 +36,7 @@ $in = new GoodsIn();
         
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
     </head>
-    <body>
+    <body id="app">
         <!--[if lt IE 9]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -54,10 +54,10 @@ $in = new GoodsIn();
 
         
 
-        <section id="goodsIn">
+        <section id="goodsIn" class="Bigborder">
             
             
-            <h5>Goods in:</h5>
+            <h4 class="text-muted">Goods in:</h4>
                                 
             <form class="form-horizontal" role="form" id="goodsInForm">
                             
@@ -146,9 +146,14 @@ $in = new GoodsIn();
                             </div>
           </form>
                 
-            <div id="todayIn">
+            
+            
+        </section>  <!-- goodsin [end]-->
+
+            
+        <div id="todayIn">
                 
-                <h5>Added today:</h5>
+                <p class="text-muted">Added today:</p>
                 
                 <?php
                     $in->AddedToday();
@@ -209,20 +214,13 @@ $in = new GoodsIn();
                 }
                 ?>
             </div> <!-- today in [end] -->
-            
-        </section>  <!-- goodsin [end]-->
-
-            
+        
 
 <footer>
     
 </footer>
-
-        
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
-        <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
-
+<?php
+        require_once './lib/modules/js_section/js_section.php';
+?>
     </body>
 </html>

@@ -11,10 +11,10 @@ if(!isset($_SESSION["name"]) || !$cr->VerifySession() ) {
     
 ?>
 
-<div id="AddUserForm">
+<div id="AddUserForm" class="Bigborder">
     
                     <button type="button" class="close emptyForm" aria-hidden="true">&times; Close</button>
-                   
+                    <p class="text-muted">Add new user:</p>             
                     <div id="errors">
                         
                     </div>
