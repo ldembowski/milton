@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 26, 2014 at 09:55 PM
+-- Generation Time: Mar 27, 2014 at 09:23 PM
 -- Server version: 5.6.12-log
 -- PHP Version: 5.4.12
 
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `goodsin` (
   `dateIn` date NOT NULL,
   `status` text NOT NULL,
   PRIMARY KEY (`idGood`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `goodsin`
@@ -73,7 +73,9 @@ INSERT INTO `goodsin` (`idGood`, `Company`, `Field1`, `idCourier`, `Field2`, `Fi
 (6, 1, 'some text 1', 21, 'some text 2', 'some text 3', 'some text 4', 'NULL', 'NULL', '2014-03-26', 'close'),
 (7, 1, 'some text 23', 21, 'some text 232345', 'some text 23534534', 'some text 235', 'NULL', 'NULL', '2014-03-26', 'open'),
 (8, 2, 'sample text 1', 23, 'sample text 1', 'sample text 1', 'sample text 1', 'sample text 1', 'sample text 1', '2014-03-26', 'close'),
-(9, 2, 'wer', 22, 'fdsfsd', 'sfsdf', 'vxvxcv', 'bcvbcvb', 'dfgdfg', '2014-03-26', 'open');
+(9, 2, 'wer', 22, 'fdsfsd', 'sfsdf', 'vxvxcv', 'bcvbcvb', 'dfgdfg', '2014-03-26', 'open'),
+(10, 1, 'Y33033', 21, '123456789', 'some state', 'some text', 'NULL', 'NULL', '2014-03-27', 'open'),
+(11, 2, 'Y33307', 22, '1234587895', 'IPNI-80', 'something else ', 'extra data', 'other data', '2014-03-27', 'open');
 
 -- --------------------------------------------------------
 
