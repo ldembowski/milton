@@ -128,14 +128,31 @@ class GoodsIn extends Core{
         
         
    //close the order
-        public function CloseOrder($id){
-            $query = 'update goodsin set status="close" where idGood = "'.$this->MySQLSanitizeString($id).'"  and status = "open" limit 1';
+        public function CloseOrder($idGood, $idUser){
+            $date12 = date('Y-m-d', time());
+            $query = 'insert into closed values(NULL, "'.$this->MySQLSanitizeString($idGood).'", "'.$this->MySQLSanitizeString($idUser).'", "'.$date12.'")';
+            
+            if(!$this->AddTo($query)){ return false; }
+            
+            $query = 'update goodsin set status="close" where idGood = "'.$this->MySQLSanitizeString($idGood).'"  and status = "open" limit 1';
             return $this->Upadte($query);
         }
         
-        
-        public function AddCloseOrderToDB() {
+     //get order details   
+        public function GerOrderDetails($id) {
+            $query = 'select * from goodsin where idGood = "'.$this->MySQLSanitizeString($id).'" limit 1';
             
+            if(!$this->GetFrom($query)) {
+                return false;
+            } else {
+                $query = 'select idUser, UNIX_TIMESTAMP(closeDate) from closed where idGood = '.$this->MySQLSanitizeString($id).' limit 1';
+                if($result = $this->GetFrom($query)) {
+                        $row = mysql_fetch_assoc($result);
+                        return $row;
+                } else { return  false; } 
+            }
+            
+            //UNIX_TIMESTAMP(date) vs DATE_FORMAT(closeDate, \'%d-%m-%Y\')
         }
 
     

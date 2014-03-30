@@ -61,8 +61,8 @@ $cr = new Users();
         <!-- Add your site or application content here -->
         <section id="loginForm" class="bg-info Bigborder">
 
-                <h1 class="lead text-center text-muted">D e m o</h1>
-            
+            <h1 class="lead text-center text-muted">Stock control <small>[demo]</small></h1>
+   
                 <form class="form-horizontal"  id="contactForm" method="post">
                                                 <div class="form-group">
                                                   <label for="inputLogin" class="col-sm-2 control-label">Login</label>

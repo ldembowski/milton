@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 27, 2014 at 09:23 PM
+-- Generation Time: Mar 30, 2014 at 08:46 PM
 -- Server version: 5.6.12-log
 -- PHP Version: 5.4.12
 
@@ -21,6 +21,27 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `milton` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `milton`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `closed`
+--
+
+CREATE TABLE IF NOT EXISTS `closed` (
+  `idClosed` int(11) NOT NULL AUTO_INCREMENT,
+  `idGood` int(11) NOT NULL,
+  `idUser` int(11) NOT NULL,
+  `closeDate` date NOT NULL,
+  PRIMARY KEY (`idClosed`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `closed`
+--
+
+INSERT INTO `closed` (`idClosed`, `idGood`, `idUser`, `closeDate`) VALUES
+(1, 7, 18, '2014-03-30');
 
 -- --------------------------------------------------------
 
@@ -63,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `goodsin` (
   `dateIn` date NOT NULL,
   `status` text NOT NULL,
   PRIMARY KEY (`idGood`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `goodsin`
@@ -71,11 +92,12 @@ CREATE TABLE IF NOT EXISTS `goodsin` (
 
 INSERT INTO `goodsin` (`idGood`, `Company`, `Field1`, `idCourier`, `Field2`, `Field3`, `Field4`, `ExField1`, `ExField2`, `dateIn`, `status`) VALUES
 (6, 1, 'some text 1', 21, 'some text 2', 'some text 3', 'some text 4', 'NULL', 'NULL', '2014-03-26', 'close'),
-(7, 1, 'some text 23', 21, 'some text 232345', 'some text 23534534', 'some text 235', 'NULL', 'NULL', '2014-03-26', 'open'),
+(7, 1, 'some text 23', 21, 'some text 232345', 'some text 23534534', 'some text 235', 'NULL', 'NULL', '2014-03-26', 'close'),
 (8, 2, 'sample text 1', 23, 'sample text 1', 'sample text 1', 'sample text 1', 'sample text 1', 'sample text 1', '2014-03-26', 'close'),
 (9, 2, 'wer', 22, 'fdsfsd', 'sfsdf', 'vxvxcv', 'bcvbcvb', 'dfgdfg', '2014-03-26', 'open'),
 (10, 1, 'Y33033', 21, '123456789', 'some state', 'some text', 'NULL', 'NULL', '2014-03-27', 'open'),
-(11, 2, 'Y33307', 22, '1234587895', 'IPNI-80', 'something else ', 'extra data', 'other data', '2014-03-27', 'open');
+(11, 2, 'Y33307', 22, '1234587895', 'IPNI-80', 'something else ', 'extra data', 'other data', '2014-03-27', 'open'),
+(12, 2, 'one', 22, '345', '7890', '455rewr', '12345678980', 'something', '2014-03-30', 'open');
 
 -- --------------------------------------------------------
 

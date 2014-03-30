@@ -50,20 +50,36 @@ if(!isset($_SESSION["name"]) || !$cr->VerifySession() ) {
                echo'</tbody></table>';
                    
                }else {
-               echo '<p class="text-danger">Order not exists</p>';
+                   
+                 // check for order $id  
+                   $res = $good->GerOrderDetails($id);
+                   
+                   if(!$res) {
+                        echo '<p class="text-danger">Order #'.$id.' not exists</p>';
+                   } else {
+                       $user = $cr->GetUserFromDBbyID($res["idUser"]);
+                       $date = date('d-m-Y', $res["UNIX_TIMESTAMP(closeDate)"]);
+                    
+                       
+                       echo '<p class="text-danger">#'.$id.' already closed on '.$date.' by <strong>'.$user[1]["name"].'</strong> </p>';
+                      // var_dump($res);
+                   }
                
            } 
            }
            
            
            
-       // update opened order
+       // Close order !!! update opened order 
        if($cr->get_get("update") && $cr->get_get("update") == 1 && is_numeric($cr->get_get("update"))){
            $id = $cr->get_post("idGood");
            
-           if($good->CloseOrder($id)) {
+           $userId =$cr->GetUserFromDB($_SESSION["name"]);
+           
+           if($good->CloseOrder($id, $userId[1]["idUser"] )) {
                echo "true";
            } else {
+               
                echo '<p class="text-danger">Status NOT changed.... Please try again later....</p>';
            }
            
