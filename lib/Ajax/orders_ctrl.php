@@ -22,7 +22,7 @@ if(!isset($_SESSION["name"]) || !$cr->VerifySession() ) {
                echo '<table class="table table-condensed">
                                 <thead>
                                 <tr class="active">
-                                    <td>order no</td>
+                                    <td>no</td>
                                     <td>Company</td>
                                     <td>Field1</td>
                                     <td>Courier</td> 
@@ -58,7 +58,7 @@ if(!isset($_SESSION["name"]) || !$cr->VerifySession() ) {
                         echo '<p class="text-danger">Order #'.$id.' not exists</p>';
                    } else {
                        $user = $cr->GetUserFromDBbyID($res["idUser"]);
-                       $date = date('d-m-Y', $res["UNIX_TIMESTAMP(closeDate)"]);
+                       $date = date('d-m-Y', $res["closeDate"]);
                     
                        
                        echo '<p class="text-danger">#'.$id.' already closed on '.$date.' by <strong>'.$user[1]["name"].'</strong> </p>';

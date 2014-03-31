@@ -145,7 +145,7 @@ class GoodsIn extends Core{
             if(!$this->GetFrom($query)) {
                 return false;
             } else {
-                $query = 'select idUser, UNIX_TIMESTAMP(closeDate) from closed where idGood = '.$this->MySQLSanitizeString($id).' limit 1';
+                $query = 'select idUser, UNIX_TIMESTAMP(closeDate) as closeDate from closed where idGood = '.$this->MySQLSanitizeString($id).' limit 1';
                 if($result = $this->GetFrom($query)) {
                         $row = mysql_fetch_assoc($result);
                         return $row;
