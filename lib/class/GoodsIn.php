@@ -56,11 +56,11 @@ class GoodsIn extends Core{
         foreach($this->good as $key=>$data){
             $into .= $key.',';
             
-            if(!$data) {
-                $values .= '"NULL",';
-            } else {
-                $values .= '"'.$this->MySQLSanitizeString($data).'",';
-            }
+                    if(!$data) {
+                        $values .= '"NULL",';
+                    } else {
+                        $values .= '"'.$this->MySQLSanitizeString($data).'",';
+                    }
         }
         
         $into = rtrim($into, ',');
@@ -107,8 +107,7 @@ class GoodsIn extends Core{
         if($result = $this->GetFrom($query)){
                 while($row = mysql_fetch_assoc($result)){
                     $this->closed[] = $row;
-                }
-                
+                }               
                 return true;
             }   else return false;
     } 

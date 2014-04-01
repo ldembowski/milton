@@ -59,10 +59,9 @@ if(!isset($_SESSION["name"]) || !$cr->VerifySession() ) {
                    } else {
                        $user = $cr->GetUserFromDBbyID($res["idUser"]);
                        $date = date('d-m-Y', $res["closeDate"]);
-                    
-                       
+                                           
                        echo '<p class="text-danger">#'.$id.' already closed on '.$date.' by <strong>'.$user[1]["name"].'</strong> </p>';
-                      // var_dump($res);
+           
                    }
                
            } 

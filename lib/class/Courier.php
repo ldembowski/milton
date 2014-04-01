@@ -6,7 +6,7 @@ class Courier extends Users {
     
     
     public function __construct() {
-        parent::__construct();
+        //parent::__construct();
         $this->GenerateCouriersList();
     }
     
